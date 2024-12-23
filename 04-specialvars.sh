@@ -1,7 +1,7 @@
 #!/bin/bash
-Ass=Ass
-Bss=Bss
-Css=Css
+Ass=As
+Bss=Bs
+Css=Cs
 
-echo "all variables: "
+echo "all variables: $@"
 echo "no.of variables: $#"
