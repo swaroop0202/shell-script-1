@@ -12,3 +12,11 @@ then
 else
     echo "you are a root user"
 fi
+
+dnf install mysql-server -y
+if [ $? -ne 0 ]
+then 
+    echo "installation of mysql...failure"
+else
+    echo "installation...success"
+fi
