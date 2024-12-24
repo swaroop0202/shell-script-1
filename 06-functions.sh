@@ -13,10 +13,17 @@ else
     echo "you are a root user"
 fi
 
-dnf install mysql-server -y
-if [ $? -ne 0 ]
+VALIDATE() {
+    if [ $1 -ne 0 ]
 then 
-    echo "installation of mysql...failure"
+    echo "$2 ...failure"
 else
-    echo "installation...success"
+    echo "$2...success"
 fi
+
+}
+
+dnf install mysql-server -y
+validate "$?" "installation of mysql" 
+
+
