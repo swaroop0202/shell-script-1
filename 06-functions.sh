@@ -10,4 +10,4 @@ else
     echo "you are a super user"
 fi
 
-echo "SCRIPTNAME: $0"
+echo "SCRIPTNAME: $0 | cut -d "." -f1"
