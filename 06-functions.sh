@@ -10,4 +10,4 @@ else
     echo "you are a super user"
 fi
 
-SCRIPTNAME: $0
+echo "SCRIPTNAME: $0"
