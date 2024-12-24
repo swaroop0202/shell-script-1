@@ -6,6 +6,7 @@ SCRIPTNAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$( date +%F-%H-%M-%S)
 LOGFILE=/tmp/$SCRIPTNAME-$TIMESTAMP.log
 
+
 if [ $USERID -ne 0 ]
 then 
     echo "please run this script with root user"
@@ -23,7 +24,7 @@ fi
 
 }
 
-dnf install mysql-serverr -y
+dnf install mysql-server -y &>>$LOGFILE
 VALIDATE "$?" "installation of mysql" 
 
 
