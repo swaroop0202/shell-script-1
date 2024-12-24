@@ -16,6 +16,7 @@ read mysql_rootpassword
 if [ $USERID -ne 0 ]
 then 
     echo "please run this script with root user"
+    exit 1
 else
     echo "you are a root user"
 fi
