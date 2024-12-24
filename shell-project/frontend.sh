@@ -29,17 +29,30 @@ else
 fi
 }
 
-dnf install nginx -y 
+dnf install nginx -y &>>$LOGFILE
+VALIDATE "$?" "installing nginx"
 
-systemctl enable nginx
+systemctl enable nginx &>>$LOGFILE
+VALIDATE "$?" "enbaling nginx"
 
-systemctl start nginx
+systemctl start nginx &>>$LOGFILE
+VALIDATE "$?" "starting nginx"
 
-rm -rf /usr/share/nginx/html/*
+rm -rf /usr/share/nginx/html/* &>>$LOGFILE
+VALIDATE "$?" "removing contents in html directory"
 
-rm -rf /tmp/*.zip
-curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+rm -rf /tmp/*.zip &>>$LOGFILE
+curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
+VALIDATE "$?" "downloading the frontend code"
 
-cd /usr/share/nginx/html
+cd /usr/share/nginx/html &>>$LOGFILE
+VALIDATE "$?" "going into html folder"
 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>$LOGFILE
+VALIDATE "$?" "unzipping the code"
+
+cp /home/ec2-user/shell-script-1/shell-project/expense.conf https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
+VALIDATE "$?" "configuring the service"
+
+systemctl restart nginx &>>$LOGFILE
+VALIDATE "$?" "restarting nginx"
