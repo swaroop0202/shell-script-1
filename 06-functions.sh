@@ -23,7 +23,7 @@ fi
 
 }
 
-dnf install mysql-server -y
+dnf install mysql-serverr -y
 VALIDATE "$?" "installation of mysql" 
 
 
