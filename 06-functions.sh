@@ -2,12 +2,11 @@
 
 USERID=$(id -u)
 
-if [ $? -ne 0 ]
+if [ $USERID -ne 0 ]
 then 
-    echo "please run with the root user"
-    exit 1
+    echo "please run this script with root user"
 else
-    echo "you are a super user"
+    echo "you are a root user"
 fi
- 
+
 SCRIPTNAME=$(echo $0 | cut -d "." -f1)
