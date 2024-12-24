@@ -51,7 +51,7 @@ VALIDATE "$?" "going into html folder"
 unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE "$?" "unzipping the code"
 
-cp /home/ec2-user/shell-script-1/shell-project/expense.conf https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
+cp /home/ec2-user/shell-script-1/shell-project/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
 VALIDATE "$?" "configuring the service"
 
 systemctl restart nginx &>>$LOGFILE
