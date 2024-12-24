@@ -5,6 +5,9 @@ USERID=$(id -u)
 SCRIPTNAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$( date +%F-%H-%M-%S)
 LOGFILE=/tmp/$SCRIPTNAME-$TIMESTAMP.log
+R="\e[31m"
+G="\e[32m"
+W="\e[0m"
 
 
 if [ $USERID -ne 0 ]
@@ -17,9 +20,9 @@ fi
 VALIDATE() {
     if [ $1 -ne 0 ]
 then 
-    echo "$2 ...failure"
+    echo -e "$2 ...$R failure $W"
 else
-    echo "$2...success"
+    echo "$2...$G success $W"
 fi
 
 }
