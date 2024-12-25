@@ -30,13 +30,13 @@ else
 fi
 }
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$LOGFILE
 VALIDATE "$?" "disabling nodejs"
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$LOGFILE
 VALIDATE "$?" "enabling nodejs"
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$LOGFILE
 VALIDATE "$?" "installing nodejs"
 
 id expense
@@ -47,43 +47,43 @@ else
     echo -e "user expense already created...$Y SKIPPING $W"
 fi
 
-mkdir -p /app
+mkdir -p /app &>>$LOGFILE
 VALIDATE "$?" "creating a directory"
 
 
 rm -rf /tmp/*.zip
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE "$?" "downloading the backend code"
 
-cd /app
+cd /app &>>$LOGFILE
 VALIDATE "$?" "going into app directory"
 
 rm -rf /app/*
 
 
 
-unzip /tmp/backend.zip
+unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE "$?" "unzipping the code"
 
 cd /app
 
-npm install
+npm install &>>$LOGFILE
 VALIDATE "$?" "installing the dependencies"
 
-cp /home/ec2-user/shell-script-1/shell-project/backend.service /etc/systemd/system/backend.service
+cp /home/ec2-user/shell-script-1/shell-project/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE "$?" "configuring the backend service"
 
-systemctl daemon-reload
+systemctl daemon-reload &>>$LOGFILE
 VALIDATE "$?" "daemon reload"
 
-systemctl start backend
+systemctl start backend &>>$LOGFILE
 VALIDATE "$?" "starting the backend app"
 
-systemctl enable backend
+systemctl enable backend &>>$LOGFILE
 VALIDATE "$?" "enabling the backend app"
 
-dnf install mysql -y
+dnf install mysql -y &>>$LOGFILE
 VALIDATE "$?" "installing the mysql client"
 
-mysql -h 172.31.22.83 -uroot -p${mysql_rootpassword} < /app/schema/backend.sql
+mysql -h 172.31.22.83 -uroot -p${mysql_rootpassword} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE "$?" "loading the schema"
