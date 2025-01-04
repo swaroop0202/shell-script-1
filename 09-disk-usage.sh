@@ -10,4 +10,5 @@ do
     if [ $usage -ge $DISK_THRESHOLD ]
     then
         echo "$usage is more than $DISK_TRESHOLD, current usage is $usage"
+    fi
 done <<< $DISK_USAGE
