@@ -8,7 +8,7 @@ DISK_USAGE=$(df -hT | grep xfs | awk -F " " '{print $6F}' | cut -d '%' -f1
 
 DISK_THRESHOLD=6
 
-if [ DISK_USAGE -gt $(DISK_THRESHOLD) ]
+if [ $(DISK_USAGE) -gt $(DISK_THRESHOLD) ]
 then
     echo "$DISK_FOLDER is greater than $DISK_USAGE , current usage=$DISK_USAGE"
 else
