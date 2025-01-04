@@ -13,3 +13,4 @@ then
     echo "$DISK_FOLDER is greater than $DISK_USAGE , current usage=$DISK_USAGE"
 else
     echo "$DISK_FOLDER is less  than $DISK_USAGE , current usage=$DISK_USAGE"
+fi
